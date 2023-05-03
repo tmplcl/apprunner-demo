@@ -2,14 +2,14 @@ resource "aws_apprunner_service" "this" {
   service_name = "apprunner-demo"
 
   source_configuration {
-    image_repository {
-      image_configuration {
-        port = "8000"
+    code_repository {
+      repository_url = "https://github.com/tmplcl/apprunner-demo"
+      source_code_version {
+        type  = "BRANCH"
+        value = "main"
       }
-      image_identifier      = "public.ecr.aws/aws-containers/hello-app-runner:latest"
-      image_repository_type = "ECR_PUBLIC"
+      configuration_source = "REPOSITORY"
     }
-    auto_deployments_enabled = false
   }
 
   tags = {

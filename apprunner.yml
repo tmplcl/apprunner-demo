@@ -1,0 +1,25 @@
+version: 1.0
+runtime: nodejs16
+build:
+  env:
+    - name: ORIGIN
+      value: https://apprunner.aws.tcio.tech/
+    - name: HOST
+      value: apprunner.aws.tcio.tech
+    - name: PORT
+      value: 3000
+  commands:
+    build:
+      - cd apprunner-web
+      - npm run build
+network:
+  port: 3000
+run:
+  env:
+    - name: ORIGIN
+      value: https://apprunner.aws.tcio.tech/
+    - name: HOST
+      value: apprunner.aws.tcio.tech
+    - name: PORT
+      value: 3000
+  command: cd apprunner-web && node build
